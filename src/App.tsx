@@ -1,14 +1,35 @@
 //App.tsx rappresenta il root
 import Message from "./Message";
+import { Alert } from "./components/Alert";
+import Button from "./components/Button";
 import ListGroup from "./components/ListGroup";
 import ListGroupWithInterface from "./components/ListGroupWithInterface";
+import ButtonColor from "./components/ButtonColorEnum";
+import { useState } from "react";
 
 function App() {
+  const [alertVisible, setAlertVisibility] = useState(false);
+  return (
+    <div>
+      {alertVisible && (
+        <Alert
+          onClose={() => {
+            setAlertVisibility(false),
+              console.log("HAI CHIUSO L'ALERT? RIAPRILO!!");
+          }}
+        >
+          HAI APERTO L'ALERT? CHIUDILO!!
+        </Alert>
+      )}
+      <Button onClick={() => setAlertVisibility(true)}>My Button</Button>
+    </div>
+  );
+
   //return <div><Message></Message></div>
   //Uguale a sopra ma più conciso
   //return <div><Message /></div>;
 
-  const items = ["NewYork", "Milan", "Paris", "Tokyo", "London", "Palermo"];
+  /*const items = ["NewYork", "Milan", "Paris", "Tokyo", "London", "Palermo"];
   const handleSelectItem = (item: string) => {
     console.log(item);
   };
@@ -22,6 +43,7 @@ function App() {
       />
     </div>
   );
+  */
 
   /*
   i vari useState in react come quello presente in ListGroup.tsx sono indipendenti e mantengono il loro stato 
