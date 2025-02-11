@@ -1,4 +1,5 @@
 //import { Fragment } from "react/jsx-runtime"; invece di <> e </> si può usare fragment
+import { MouseEvent } from "react";
 
 function ListGroup() {
   const items = ["NewYork", "Milan", "Paris", "Tokyo", "London", "Palermo"];
@@ -19,9 +20,26 @@ function ListGroup() {
     return emptyItems.length === 0 ? <p>No item found</p> : null;
   };
 
+  //Event Handler
   function handleClickList(itemClicked: String, index: number) {
     console.log(itemClicked + " Clicked" + " At Index " + index);
   }
+
+  //Bisogna specificare il tipo di event altrimenti si spacca perchè event non sa che tipo è
+  const handleClick = (event: MouseEvent) => {
+    console.log(event);
+  };
+
+  const handleSpecificInfoOnClick = (event: MouseEvent) => {
+    console.log(
+      "Event of type " +
+        event.type +
+        " At x= " +
+        event.clientX +
+        " And y= " +
+        event.clientY
+    );
+  };
 
   return (
     /*React non accetta che un componente abbia più elementi, come h1 e ul sotto, per ovviare al problema 
@@ -80,6 +98,18 @@ function ListGroup() {
             className="list-group-item"
             key={item}
             onClick={() => handleClickList(item, index)}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+      <h1>OnClickWithMoreInfoDynamicList</h1>
+      <ul className="list-group">
+        {items.map((item, index) => (
+          <li
+            className="list-group-item"
+            key={item}
+            onClick={(event) => handleSpecificInfoOnClick(event)}
           >
             {item}
           </li>
