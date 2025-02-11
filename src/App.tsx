@@ -9,9 +9,17 @@ function App() {
   //return <div><Message /></div>;
 
   const items = ["NewYork", "Milan", "Paris", "Tokyo", "London", "Palermo"];
+  const handleSelectItem = (item: string) => {
+    console.log(item);
+  };
+
   return (
     <div>
-      <ListGroupWithInterface items={items} heading="Cities" />
+      <ListGroupWithInterface
+        items={items}
+        heading="Cities"
+        onSelectItem={handleSelectItem}
+      />
     </div>
   );
 
