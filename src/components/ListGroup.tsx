@@ -1,10 +1,25 @@
 //import { Fragment } from "react/jsx-runtime"; invece di <> e </> si può usare fragment
-import { MouseEvent } from "react";
+import { MouseEvent, useState } from "react";
 
 function ListGroup() {
   const items = ["NewYork", "Milan", "Paris", "Tokyo", "London", "Palermo"];
   let emptyItems = [""];
   emptyItems = [];
+
+  //Hook
+  /*
+    let selectedIndex = 0;
+  const arr = useState(-1);
+  arr[0]; //variabile come selectedIndex sopra
+  arr[1]; //updater function che aggiorna la variabile arr[0]
+*/
+
+  //Applichiamo l'hook con il selectedIndex,
+  // per convenzione il secondo elemento dell'array lo chiamiamo setNomeFunzione perchè rappresenta l'updater function
+  const [selectedIndex, setSelectedIndex] = useState(-1);
+
+  //possiamo usare uno hookState anche su stringhe:
+  const [name, setName] = useState("");
 
   //Const avente un messaggio nel caso in cui la lista è vuota,
   // poco utilizzabile, meglio avere una funzione che può prendere parametri
@@ -109,7 +124,25 @@ function ListGroup() {
           <li
             className="list-group-item"
             key={item}
-            onClick={(event) => handleSpecificInfoOnClick(event)}
+            onClick={handleSpecificInfoOnClick}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+      <h1>ActiveDynamicList</h1>
+      <ul className="list-group">
+        {items.map((item, index) => (
+          <li
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
+            key={item}
+            onClick={() => {
+              setSelectedIndex(index);
+            }}
           >
             {item}
           </li>
