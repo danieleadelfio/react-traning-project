@@ -1,0 +1,4 @@
+selezionare tutte le occorrenze nel file per la selezione fatta: cntrl + shift + l
+command palette: cntrl + shift + p
+cercare un file: cntrl + p
+per wrappare tutto velocmente: selezionare il testo da wrappare -> command palette -> cercare wrap abbreviation -> scrivere con cosa wrappare
